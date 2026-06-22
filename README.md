@@ -181,6 +181,15 @@ Useful references:
 - [Loop Library agent guide](https://signals.forwardfuture.ai/loop-library/agents/)
 - [Live Loop Library catalog](https://signals.forwardfuture.ai/loop-library/catalog.json)
 
+## Acknowledgments
+
+Loop Hiring Manager is built on the concepts, vocabulary, safety principles, and
+feedback-loop structure developed by
+[Forward Future's Loop Library](https://github.com/Forward-Future/loop-library).
+The Loop Library is the source of published loop candidates used by this
+framework and the primary reference for designing bounded agent workflows with
+explicit checks and stopping conditions.
+
 ## Contributing
 
 Contributions are welcome when they make the framework more selective,
