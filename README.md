@@ -33,19 +33,59 @@ This framework makes loop adoption a portfolio decision. A candidate must be:
 - cheap enough to justify its execution and review cost;
 - removable when the need disappears.
 
-## Recommended architecture
+## Choose an operating mode
 
-Run the parent as a **manual system-level review**, while keeping its evidence and
-decisions project-local.
+Keep the parent at the **system level** and its evidence and decisions
+project-local. During setup, the installing agent must ask:
+
+> Would you like Loop Hiring Manager to run only when you request it, or should
+> merges collect staffing signals and trigger a review after an agreed evidence
+> threshold is reached?
+
+Do not choose or enable a background trigger silently.
 
 The system-level parent can inspect the loops already available to the agent and
 fetch the current [Forward Future Loop Library](https://signals.forwardfuture.ai/loop-library/catalog.json).
 Project-local files preserve each repository's actual risks, tests, tools,
 permissions, and history.
 
-Do not schedule the parent initially. Run it manually on real projects until it
-has demonstrated that it produces sparse, valuable recommendations and clean
-no-hire results.
+### Option A: Manual only
+
+Run a read-only staffing review only when the user requests one. This is the
+recommended starting mode and the safest choice for a new installation.
+
+Use manual mode when:
+
+- the project has not yet completed several useful staffing reviews;
+- repository signals or thresholds are still unclear;
+- the team wants direct control over review timing;
+- background agent execution is unavailable or undesirable.
+
+### Option B: Merge signals with threshold-triggered reviews
+
+After each merge to the default branch, collect lightweight evidence such as
+repeated CI failures, recurring manual interventions, ownership gaps, noisy
+adopted loops, or repeated workarounds. Do not run the full Hiring Manager after
+every commit or merge.
+
+Run the full read-only review only when a configured recurrence or severity
+threshold is crossed. The review may open or update a decision-ready report or
+issue, but it must not install, schedule, or execute candidate loops.
+
+Use triggered mode only after defining:
+
+- which merged branch and events may contribute signals;
+- the authorized evidence sources;
+- recurrence and severity thresholds;
+- where the review report is written;
+- deduplication and retention rules;
+- execution and review budgets;
+- who approves trials, hires, schedules, and retirement decisions.
+
+Start with manual mode when these details are unknown. Triggered mode is
+platform-specific and requires an external scheduler or agent runner; this
+repository supplies the decision framework, not an automatically enabled
+background service.
 
 ## Start here
 
@@ -61,11 +101,16 @@ Copy these files into a project-specific working location:
 Then ask your agent:
 
 ```text
-Run the Loop Hiring Manager in PARENT_LOOP.md as a manual, read-only staffing
-review for this project. Use registry.md, pipeline.md, and reviews.md for state.
-Fetch the current Loop Library and inventory the loops already available to you.
-Do not execute, install, or schedule any candidate. Return no more than three
-evidence-backed recommendations, and treat no-hire as a valid result.
+Set up the Loop Hiring Manager for this project. First ask me to choose:
+(A) manual read-only reviews only, or
+(B) lightweight signal collection after merges, with a full read-only review
+only after an agreed evidence threshold is crossed.
+
+Use PARENT_LOOP.md for reviews and registry.md, pipeline.md, and reviews.md for
+project-local state. Fetch the current Loop Library and inventory the loops
+already available to you. Do not enable a trigger, execute, install, or schedule
+any candidate without approval. Return no more than three evidence-backed
+recommendations, and treat no-hire as a valid result.
 ```
 
 ## Capacity policy
