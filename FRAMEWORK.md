@@ -200,13 +200,40 @@ The staffing review passes when:
 - the next human decision is obvious;
 - or the pipeline is empty because no hire is justified.
 
-## Placement
+## Operating modes
 
-Begin manually at the system level with project-local state. The parent needs a
-current view of globally available loops, while each project needs its own
-evidence, boundaries, and decisions.
+Keep the parent at the system level and its evidence, registry, pipeline, and
+reviews project-local. During setup, ask the user to choose one of two modes.
+Never infer or silently enable background execution.
 
-Only consider scheduling after repeated manual reviews demonstrate useful,
-sparse recommendations and clean no-op outcomes. A monthly, post-release, or
-post-incident-cluster trigger is more appropriate than per-commit or
-high-frequency polling.
+### Manual mode
+
+Run the full read-only staffing review only when the user requests it. This is
+the recommended starting mode when the project has no established signal
+thresholds or history of useful reviews.
+
+### Threshold-triggered mode
+
+After each merge to the default branch, collect lightweight staffing signals
+from authorized sources. Signals may include repeated CI failures, recurring
+manual interventions, ownership gaps, repeated workarounds, or adopted loops
+that repeatedly fail or create noise.
+
+Do not run the full Hiring Manager after every commit or merge. Deduplicate and
+accumulate signals, then run the full read-only review only after a configured
+recurrence or severity threshold is crossed. The review may create or update a
+decision-ready report or issue; it may not install, schedule, or execute a
+candidate loop.
+
+Triggered mode requires the user to approve:
+
+- the default branch and qualifying merge events;
+- authorized evidence sources;
+- recurrence and severity thresholds;
+- signal retention and deduplication;
+- report destination;
+- execution and review budgets;
+- the external scheduler or agent runner.
+
+In either mode, trials, hires, schedules, consequential permissions, and
+retirement decisions remain separate human approvals.

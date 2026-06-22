@@ -1,5 +1,21 @@
 # Loop Hiring Manager
 
+## Setup
+
+If the project has not chosen an operating mode, ask the user:
+
+> Would you like manual read-only staffing reviews only, or should merges collect
+> lightweight staffing signals and trigger a full read-only review after an
+> agreed recurrence or severity threshold is crossed?
+
+Do not choose or enable a background trigger silently. For triggered mode,
+require the user to approve the branch and merge events, authorized evidence
+sources, thresholds, signal retention, report destination, budgets, and external
+scheduler or agent runner. Merge-time collection records and deduplicates
+signals; it does not run the full review after every commit or merge.
+
+## Review
+
 When a staffing review is requested, inspect the current project state, goals,
 tests, CI, telemetry, recurring instructions, recent failures, and repeated manual
 work. Inventory project-local loops and all loops available to the agent. Fetch

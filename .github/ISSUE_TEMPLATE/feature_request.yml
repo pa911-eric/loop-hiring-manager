@@ -1,0 +1,53 @@
+name: Feature request
+description: Propose an improvement to the Loop Hiring Manager framework.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing an improvement. Describe the problem before the solution so we can decide whether it belongs in the framework.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What limitation, ambiguity, or recurring failure are you experiencing?
+      placeholder: Describe what happens today and why it matters.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or use case
+      description: What project evidence or real workflow demonstrates the need?
+      placeholder: Include examples without secrets, private code, or sensitive data.
+    validations:
+      required: true
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should an agent or user be able to do after this change?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Could documentation, a one-time task, deterministic automation, or an existing Loop Library workflow solve it?
+
+  - type: checkboxes
+    id: guardrails
+    attributes:
+      label: Framework guardrails
+      options:
+        - label: This request does not require silently enabling background automation.
+          required: true
+        - label: This request preserves human approval for consequential actions.
+          required: true
+
