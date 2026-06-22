@@ -2,6 +2,16 @@
 
 Thanks for helping improve Loop Hiring Manager.
 
+## Feature requests
+
+Please [create a GitHub issue](https://github.com/pa911-eric/loop-hiring-manager/issues)
+before working on a new feature. Describe the problem, the project evidence or
+use case behind it, and the outcome you would like. This gives us a place to
+discuss scope and decide whether the change belongs in the framework.
+
+Bug reports, questions, and documentation suggestions are also welcome as
+issues.
+
 ## Good contributions
 
 Changes should make the framework:
